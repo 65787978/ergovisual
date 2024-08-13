@@ -53,7 +53,7 @@ pub fn Chart() -> Element {
     });
 
     rsx! (
-        div {
+        div {class:"bg-opacity-10 bg-white backdrop-filter backdrop-blur-2xl rounded-lg shadow-lg p-2 mt-6",
             style: "width: 100%; text-align: center;",
             div {
                 id: "chart",
