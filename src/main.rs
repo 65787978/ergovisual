@@ -6,6 +6,7 @@ use dioxus::prelude::*;
 use dioxus_fullstack::Config;
 use dioxus_logger::tracing;
 
+use data::data::get_server_data;
 use routes::blockvisualizer::BlockVisualizer;
 use routes::home::HomePage;
 
@@ -15,6 +16,9 @@ mod routes {
 }
 mod utils {
     pub mod chart;
+}
+mod data {
+    pub mod data;
 }
 
 // Urls are relative to your Cargo.toml file
@@ -216,7 +220,7 @@ async fn post_server_data(data: String) -> Result<(), ServerFnError> {
     Ok(())
 }
 
-#[server(GetServerData)]
-async fn get_server_data() -> Result<String, ServerFnError> {
-    Ok("Hello from the server!".to_string())
-}
+// #[server(GetServerData)]
+// async fn get_server_data() -> Result<String, ServerFnError> {
+//     Ok("Hello from the server!".to_string())
+// }
