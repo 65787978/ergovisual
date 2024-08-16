@@ -14,7 +14,16 @@ pub fn HomePage() -> Element {
     });
 
     match &*server_data.read_unchecked() {
-        Some(Ok(data)) => rsx!(h1{class:"text-slate-200", "{data:?}"}),
+        Some(Ok(data)) => rsx!(
+            for data_entry in data.unconfirmed_txs.iter() {
+                h1{class:"text-slate-200", "ID: {data_entry.id}"}
+                h1{class:"text-slate-200", "INPUTS: {data_entry.inputs.len()}"}
+                h1{class:"text-slate-200", "DATA_INPUTS: {data_entry.data_inputs.len()}"}
+                h1{class:"text-slate-200", "OUTPUTS: {data_entry.outputs.len()}"}
+                h1{class:"text-slate-200", "SIZE: {data_entry.size}"}
+            }
+
+        ),
         Some(Err(err)) => rsx!("{err:?}"),
         None => rsx!(),
     }
